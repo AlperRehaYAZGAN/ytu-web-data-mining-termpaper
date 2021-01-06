@@ -1,3 +1,4 @@
-import yazganwebminingproject
+from yazganwebminingproject.__init__ import getApp
 
-app = yazganwebminingproject.getApp()  
+app = getApp() 
+ 
