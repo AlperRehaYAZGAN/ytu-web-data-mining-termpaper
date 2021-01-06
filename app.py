@@ -51,7 +51,7 @@ def analyze_from_url_get():
     # param = request.form.get('text')
     # print(param)
     param = request.form.get('url')
-    url = request.args.get('url')
+    # url = request.args.get('url')
     
     return jsonify(param)
 
