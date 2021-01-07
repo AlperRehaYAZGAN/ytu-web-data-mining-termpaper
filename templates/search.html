@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18011020 - Sonuçlar</title>
+    <link rel="stylesheet" href="http://localhost:5000/css/search.css" />
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+
+<body>
+    <script src="http://localhost:5000/js/search.js"> </script>
+    <div class="container">
+        <center><h3 class="display-1">{{ msg }}</h3></center>
+        </p>
+        <div class="row">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Kayıtlar</h1>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr class="filters">
+                            <th><input type="text" class="form-control" placeholder="Url"></th>
+                            <th><input type="text" class="form-control" placeholder="Anahtar Kelime"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in rows %}
+                        <tr>
+                            <td><a href="{{row['url']}}">{{row["url"]}}</a></td>
+                            <td>{{row["keyword"]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a href="/">Ana Sayfaya Geri Dön</a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

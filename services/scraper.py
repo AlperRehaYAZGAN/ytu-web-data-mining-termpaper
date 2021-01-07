@@ -1,6 +1,7 @@
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup
 import re
+import trafilatura
 
 class Scraper():
     Newlines = re.compile(r'[\r\n]\s+')
@@ -8,8 +9,8 @@ class Scraper():
     def __init__(self):
         pass
 
-    def scrape_url_text_content(self,url = 'https://tr.wordpress.org/'):
-        return self.__get_page_text_content(url)    
+    def scrape_url_text_content(self,url):
+        return self.__get_content_with_trafilatura(url)    
         
     def __get_page_text_content(self,url):
         # given a url, get page content
@@ -23,5 +24,9 @@ class Scraper():
         txt = bs.find('body').getText('\n')
         # remove multiple linebreaks and whitespace
         return self.Newlines.sub('\n', txt)
+    
+    def __get_content_with_trafilatura(self,url):
+        downloaded = trafilatura.fetch_url(url)
+        return trafilatura.extract(downloaded)
     
     pass

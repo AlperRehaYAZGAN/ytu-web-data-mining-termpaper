@@ -4,7 +4,7 @@ from services.scraper import Scraper
 class KeywordFinder():    
     rake : Rake
     def __init__(self):
-        self.rake = Rake(min_length=1, max_length=10)
+        self.rake = Rake(min_length=1, max_length=5)
         pass    
     
     

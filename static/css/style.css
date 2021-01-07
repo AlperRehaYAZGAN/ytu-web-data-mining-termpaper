@@ -14,6 +14,7 @@ html {
  */
 body {
   margin: 0;
+  background: #e74c3c !important;
 }
 
 /**
@@ -819,7 +820,6 @@ legend {
   -ms-flex-align: center;
       align-items: center;
   font-family: 'Poppins', sans-serif;
-  background: url("https://yazganwebminingproject.herokuapp.com/Searchs_004.png");
   background-size: cover;
   background-position: center center;
   padding: 15px;

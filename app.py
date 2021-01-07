@@ -1,9 +1,12 @@
 # app.py
-from flask import Flask, request, jsonify, send_from_directory, send_file
+from flask import Flask, request, jsonify, send_from_directory, send_file, render_template
 from services.controller import BaseController
+from services.database import Sqlite
+
 
 app = Flask(__name__)
 controller = BaseController()
+database = Sqlite()
 
 def getApp():
     return app
@@ -31,38 +34,38 @@ if __name__ == "__main__":
 # A welcome message to test our server
 @app.route('/')
 def index():
-    return send_file('views/index.html')
+    return render_template('index.html')
 
 
-@app.route('/search', methods=['GET'])
-def search_get():
-    return jsonify("result")
-
-
-@app.route('/from/text', methods=['GET'])
-def analyze_from_text():
-    # Retrieve the name from url parameter
-    text = request.form.get('mini')
-    return jsonify(text)
-
-
-@app.route('/from/url', methods=['GET'])
-def analyze_from_url_get():
-    # param = request.form.get('text')
-    # print(param)
-    param = request.form.get('url')
-    # url = request.args.get('url')
+@app.route('/search', methods=['POST'])
+def search():
+    text = str(request.form['searchtext'])
     
-    return jsonify(param)
+    if(text):
+        if("," in text):
+            rows = database.find(text.split(','))
+            if(rows):
+                return render_template("search.html",rows = rows,msg = "Aramanıza Uygun Sonuçlar Aşağıda Listelenmektedir.")
+            else:
+                return render_template("search.html",rows = rows,msg = "Maalesef aramanıza uygun bir sonuç bulunamadı.")
+        else:
+            results = controller.get_keywords_from_url(text)
+            database.save(text,results)
+            return render_template("query.html",rows = results, url = text)
+        pass
+    else:
+        return render_template('index.html')
+    
+    
+@app.route('/all', methods=['GET'])
+def all():
+    rows = database.all()
+    print(rows)
+    return render_template("search.html",rows = rows, msg = "Sisteme kayıtlı bütün anahtar kelimeleri ve referanslarını görmektesiniz.")
 
-
-@app.route('/from/url', methods=['POST'])
-def analyze_from_url_post():
-    # param = request.form.get('text')
-    # print(param)
-    return "Succes"
-
-
-
+@app.route('/api/text', methods=['POST'])
+def from_text():
+    text = str(request.form['text'])
+    return jsonify({"keywords" : controller.get_keywords_from_text(text)})
 
 

@@ -147,19 +147,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	      appendValue: null,
 	      renderSelectedChoices: 'auto',
 	      loadingText: 'Loading...',
-	      noResultsText: 'No results found',
+	      noResultsText: 'Sonuç Bulunamadı',
 	      noChoicesText: 'No choices to choose from',
 	      itemSelectText: 'Press to select',
 	      addItemText: function addItemText(value) {
-	        return 'Press Enter to add <b>"' + (0, _utils.stripHTML)(value) + '"</b>';
+	        return '<b>"' + (0, _utils.stripHTML)(value) + '"</b> kelimesini eklemek için lütfen enter tuşuna basınız';
 	      },
 	      maxItemText: function maxItemText(maxItemCount) {
-	        return 'Only ' + maxItemCount + ' values can be added.';
+	        return 'Yalnızca ' + maxItemCount + ' sayıda eleman eklenebilir.';
 	      },
 	      itemComparer: function itemComparer(choice, item) {
 	        return choice === item;
 	      },
-	      uniqueItemText: 'Only unique values can be added.',
+	      uniqueItemText: 'Bir eleman bir kez girilebilir.',
 	      classNames: {
 	        containerOuter: 'choices',
 	        containerInner: 'choices__inner',
