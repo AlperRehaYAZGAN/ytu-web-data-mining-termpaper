@@ -1,8 +1,3 @@
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
 # 18011020 Alper Reha YAZGAN - Web Data Mining Termpaper - Url Text Content Keyword Finder by Web Scraper  
 
 - Project is avaliable on [THIS HEROKU LINK](https://yazganwebminingproject.herokuapp.com/) you can check this link to see on action.
@@ -59,6 +54,11 @@ Simply run `flask run` inside project directory and all your tests will be run.
  - [ ] Improve Keyword Finder Algorithm
  - [ ] Improve Text Content Finder Utilities
  - [ ] Improve UI
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Please make sure to update tests as appropriate.
 
 ## License
 
