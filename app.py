@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify, send_from_directory, send_file, render_template
 from services.controller import BaseController
 from services.database import Sqlite
-
+import validators
 
 app = Flask(__name__)
 controller = BaseController()
@@ -42,16 +42,17 @@ def search():
     text = str(request.form['searchtext'])
     
     if(text):
-        if("," in text):
+        if(validators.url(text)):
+            results = controller.get_keywords_from_url(text)
+            database.save(text,results)
+            return render_template("query.html",rows = results, url = text)
+        else:
             rows = database.find(text.split(','))
             if(rows):
                 return render_template("search.html",rows = rows,msg = "Aramanıza Uygun Sonuçlar Aşağıda Listelenmektedir.")
             else:
                 return render_template("search.html",rows = rows,msg = "Maalesef aramanıza uygun bir sonuç bulunamadı.")
-        else:
-            results = controller.get_keywords_from_url(text)
-            database.save(text,results)
-            return render_template("query.html",rows = results, url = text)
+
         pass
     else:
         return render_template('index.html')
