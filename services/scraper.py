@@ -10,7 +10,7 @@ class Scraper():
         pass
 
     def scrape_url_text_content(self,url):
-        return self.__get_content_with_trafilatura(url)    
+        return self.__get_page_text_content(url)    
         
     def __get_page_text_content(self,url):
         # given a url, get page content
